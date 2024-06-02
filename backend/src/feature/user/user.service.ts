@@ -16,4 +16,7 @@ export class UserService {
       throw error;
     }
   }
+
+  //TODO 更新時はTransactionを使う
+  //ref:https://dev.classmethod.jp/articles/dynamodb-optimistic-locking/
 }
