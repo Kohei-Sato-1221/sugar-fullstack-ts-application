@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, GetCommand } from '@aws-sdk/lib-dynamodb';
+import { UserEntity, convertToEntity } from './user/user.entity';
 
 @Injectable()
 export class DynamoDBService {
@@ -18,14 +19,14 @@ export class DynamoDBService {
     this.dynamoDBClient = DynamoDBDocumentClient.from(ddbClient);
   }
 
-  async getItem(getItemParams: GetItemParams) {
+  async getItem(getItemParams: GetItemParams): Promise<UserEntity> {
     const params = {
       TableName: getItemParams.TableName,
       Key: Object.fromEntries(getItemParams.KeyValue),
     };
     try {
       const data = await this.dynamoDBClient.send(new GetCommand(params));
-      return data.Item;
+      return convertToEntity(data);
     } catch (error) {
       console.error(error);
       throw error;

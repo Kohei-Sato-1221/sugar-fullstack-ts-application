@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { DynamoDBService, GetItemParams } from './dynamodb.service';
+import { UserEntity } from './user.entity';
+import { convertToDto } from './user.dto';
+import { DynamoDBService, GetItemParams } from '../dynamodb.service';
 
 @Injectable()
 export class UserService {
@@ -11,7 +13,8 @@ export class UserService {
       KeyValue: new Map<string, string>([['Id', userId]]),
     };
     try {
-      return await this.dynamoDBService.getItem(params);
+      const userEntity: UserEntity = await this.dynamoDBService.getItem(params);
+      return convertToDto(userEntity);
     } catch (error) {
       console.error(error);
       throw error;
