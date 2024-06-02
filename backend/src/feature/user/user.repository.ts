@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { UserEntity } from './user.entity';
-import { DynamoDBService, GetItemParams } from '../dynamodb.service';
+import {
+  DynamoDBService,
+  GetItemParams,
+} from '../../infrastructure/dynamodb.service';
 
 @Injectable()
 export class UserRepository {
