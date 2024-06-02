@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { DynamoDBModule } from './dynamodb.module';
+import { UserModule } from './user.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -9,7 +9,7 @@ import { AppService } from './app.service';
     ConfigModule.forRoot({
       envFilePath: ['.env'],
     }),
-    DynamoDBModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

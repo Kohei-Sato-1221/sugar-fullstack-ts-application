@@ -3,7 +3,7 @@ import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, GetCommand } from '@aws-sdk/lib-dynamodb';
 
 @Injectable()
-export class DynamoDBService {
+export class UserService {
   dynamoDBClient: DynamoDBDocumentClient;
 
   constructor() {

@@ -1,9 +1,9 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { DynamoDBService } from './dynamodb.service';
+import { UserService } from './user.service';
 
-@Controller('dynamodb')
-export class DynamoDBController {
-  constructor(private readonly dynamoDBService: DynamoDBService) {}
+@Controller('user')
+export class UserController {
+  constructor(private readonly userService: UserService) {}
 
   @Get('user')
   root(): string {
@@ -14,6 +14,6 @@ export class DynamoDBController {
   async getItems(
     @Param('userId') userId: string,
   ): Promise<Record<string, any>> {
-    return this.dynamoDBService.getItem(userId);
+    return this.userService.getItem(userId);
   }
 }
