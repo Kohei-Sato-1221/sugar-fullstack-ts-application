@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { UserEntity } from './user.entity';
 import { convertToDto } from './user.dto';
 import { UserRepository } from './user.repository';
 
 @Injectable()
-export class UserService {
-  constructor(private repository: UserRepository) {}
+export class UserInteractor {
+  constructor(@Inject('UserRepository') private repository: UserRepository) {}
 
   async getUser(userId: string) {
     try {

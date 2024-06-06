@@ -1,9 +1,9 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { UserService } from '../feature/user/user.service';
+import { UserInteractor } from '../feature/user/user.interactor';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userInteractor: UserInteractor) {}
 
   @Get('/')
   root(): string {
@@ -12,6 +12,6 @@ export class UserController {
 
   @Get('/:userId')
   async getUser(@Param('userId') userId: string): Promise<Record<string, any>> {
-    return this.userService.getUser(userId);
+    return this.userInteractor.getUser(userId);
   }
 }
